@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gender Inequality in STEM</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            text-align: center;
+            background: url('/static/gen2.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .head {
+            margin-top: 125px;
+            color: black;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 4em;
+        }
+
+        p {
+            font-size: 0.8em;
+            width: 70%;
+        }
+
+        p1 {
+      font-size: 1.6em;
+      width: 70%;
+      line-height: 1.6;
+      margin: 0 auto 30px;
+      color:purple;
+    }
+
+
+        .upload-button {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: rgb(240, 104, 127);
+            padding: 10px 20px;
+            border-radius: 15px;
+            border: solid black;
+            cursor: pointer;
+        }
+
+        .upload-button:hover {
+            background-color: #007bff;
+        }
+
+        .top-left-buttons {
+  position: absolute;
+  top: 60px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 3; /* Make sure the buttons appear above the photo-frame */
+}
+
+.top-left-buttons a {
+      text-decoration: none;
+      color: #ffffff;
+      background-color: rgb(240, 104, 127);
+      padding: 10px 20px;
+      border-radius: 15px;
+      font-size: 1em;
+      margin-top:10px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      border:solid black;
+      cursor: pointer;
+    }
+
+          .top-left-buttons a:hover {
+            background-color:#007bff;
+          }
+      
+
+        .photo-frame {
+            position: absolute;
+            top: 100px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .photo-frame div {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: solid black;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .photo-frame div img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .details-box {
+            position: absolute;
+            top: 150px;
+            right: 130px;
+            width: 100px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            display: none;
+            z-index: 10;
+        }
+
+        .details-box h3 {
+            margin: 0 0 10px 0;
+            font-size: 0.8em;
+        }
+
+        .details-box a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-left-buttons">
+        <!-- <a href="{{ url_for('description') }}">Description</a> -->
+        <a href="description.html">Description</a>
+        <!-- <a href="{{ url_for('facts') }}">Facts</a> -->
+        <a href="facts.html">Facts</a>
+        <!-- <a href="{{ url_for('scheme') }}">GOI Schemes</a> -->
+        <a href="scheme.html">GOI Schemes</a>
+        <!-- <a href="{{ url_for('hub') }}">Resource Hub</a> -->
+              <a href="hub.html">Resource Hub</a>
+    </div>
+
+    <div class="photo-frame">
+        <div onclick="showDetails('Shipra Kumari', 'USN-1BM22CS341', '9693239651',' https://www.linkedin.com/in/shipra-kumari-92285b267/')">
+            <img src="/static/shipra.png" alt="Shipra">
+        </div>
+        <div onclick="showDetails('Aditya Kumar', 'USN-1BM22CS018', '9142498072', 'https://www.linkedin.com/in/aditya-kumar-512b45247/')">
+            <img src="/static/aditya.jpg" alt="Aditya">
+        </div>
+    </div>
+
+    <div id="detailsBox" class="details-box"></div>
+
+    <div class="container">
+        <h1 class="head">Breaking Gender Gap In STEM</h1>
+        <p1>Upload Your CSV File To Examine Gender Disparities</p1>
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <label for="file-upload" class="upload-button">Upload CSV</label>
+            <input id="file-upload" type="file" name="file" accept=".csv" style="display: none;" onchange="this.form.submit()">
+        </form>
+    </div>
+
+    <script>
+        function showDetails(name, usn, mobile, linkedin) {
+            const detailsBox = document.getElementById('detailsBox');
+            detailsBox.innerHTML = `
+                <h3>${name}</h3>
+                <p><strong>USN:</strong> ${usn}</p>
+                <p><strong>Mobile:</strong> ${mobile}</p>
+                <p><strong>LinkedIn:</strong> <a href="${linkedin}" target="_blank">Profile</a></p>
+            `;
+            detailsBox.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
